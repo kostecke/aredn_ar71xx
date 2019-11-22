@@ -377,7 +377,8 @@ if(keys %localhosts)
     {
 	$host = $localhosts{$ip}{name};
 	$tactical = $localhosts{$ip}{tactical} ? " / " . $localhosts{$ip}{tactical} : "";
-	$localpart = $tactical ? $tactical : $host =~ s/.local.mesh//r;
+	$localpart = $tactical ? $tactical : $host;
+	$localpart =~ s/.local.mesh//;
 	$rows{$host} = sprintf "<tr><td valign=top><nobr>%s</nobr>", $localpart . $tactical;
 
         if ( $wangateway{$ip} ) { $nodeiface =  "wan" ; }
@@ -435,7 +436,8 @@ foreach $ip (keys %hosts)
 
     $host = $hosts{$ip}{name};
     $tactical = $hosts{$ip}{tactical} ? " / " . $hosts{$ip}{tactical} : "";
-    $localpart = $tactical ? $tactical : $host =~ s/.local.mesh//r;
+    $localpart = $tactical ? $tactical : $host;
+    $localpart =~ s/.local.mesh//;
     $etx = sprintf "%.2f", $hosts{$ip}{etx};
     next if ($etx > 50 );
     next if ($etx == 0 );
@@ -501,7 +503,8 @@ if(keys %links)
 	$ipmain = exists $ipalias{$ip} ? $ipalias{$ip} : $ip ;
 	$host = $hosts{$ipmain}{name} ? $hosts{$ipmain}{name} : $ipmain;
 	$tactical = $hosts{$ipmain}{tactical} ? " / " . $hosts{$ipmain}{tactical} : "";
-	$localpart = $tactical ? $tactical : $host =~ s/.local.mesh//r;
+	$localpart = $tactical ? $tactical : $host;
+	$localpart =~ s/.local.mesh//r;
         if ( $rows{$host} ) { $host .= " " ; } # avoid collision 2 links to same host {rf, dtd}
 
 	$no_space_host=$host;
