@@ -504,7 +504,7 @@ if(keys %links)
 	$host = $hosts{$ipmain}{name} ? $hosts{$ipmain}{name} : $ipmain;
 	$tactical = $hosts{$ipmain}{tactical};
 	$localpart = $tactical ? $tactical : $host;
-	$localpart =~ s/.local.mesh//r;
+	$localpart =~ s/.local.mesh//;
         if ( $rows{$host} ) { $host .= " " ; } # avoid collision 2 links to same host {rf, dtd}
 
 	$no_space_host=$host;
